@@ -306,6 +306,22 @@ CString CEnterChannelDlg::GetCdnRtmp()
 	return baseRtmp + strCdn;
 }
 
+CString CEnterChannelDlg::GetPullRtmp()
+{
+	CString strCdn = _T("");
+	m_edtCdnNumber.GetWindowText(strCdn);
+	if (strCdn.Compare(LANG_STR("IDS_CHN_CDNNUMBER")) == 0
+		|| strCdn.IsEmpty()){
+		CString strChannelName;
+
+		m_ctrChannel.GetWindowText(strChannelName);
+		strCdn = strChannelName;
+	}
+
+	CString baseRtmp = _T("rtmp://vid-218.pull.chinanetcenter.broadcastapp.agora.io/live/");
+	return baseRtmp + strCdn;
+}
+
 void CEnterChannelDlg::SetVideoString(LPCTSTR lpVideoString)
 {
 	m_btnSetup.SetWindowText(lpVideoString);

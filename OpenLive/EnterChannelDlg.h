@@ -18,6 +18,7 @@ public:
 
 	CString GetChannelName();
 	CString GetCdnRtmp();
+	CString GetPullRtmp();
 
 	void GetSelfDefine(int& width, int height, int fps, int bitrate);
 	void SetVideoString(LPCTSTR lpVideoString);

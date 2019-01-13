@@ -381,12 +381,12 @@ LRESULT COpenLiveDlg::OnJoinChannel(WPARAM wParam, LPARAM lParam)
     lpAgoraObject->SetMsgHandlerWnd(m_dlgVideo.GetSafeHwnd());
     
 	CHAR	szRtmp[1024] = { 0 };
-
+	CHAR    szPull[1024] = { 0 };
 	CString strRtmp = m_dlgEnterChannel.GetCdnRtmp();
 	::WideCharToMultiByte(CP_UTF8, 0, strRtmp, -1, szRtmp, 1024, NULL, NULL);
-	
+
 	m_dlgVideo.m_rtmp_url = szRtmp;
-	
+	m_dlgVideo.m_pull_url = m_dlgEnterChannel.GetPullRtmp();
 	return 0;
 }
 

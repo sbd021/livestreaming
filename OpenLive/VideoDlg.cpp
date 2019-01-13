@@ -32,10 +32,11 @@ void CVideoDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 
-//	DDX_Control(pDX, IDC_CBXROLE_VIDEO, m_cbxRole);
+	//	DDX_Control(pDX, IDC_CBXROLE_VIDEO, m_cbxRole);
 	DDX_Control(pDX, IDC_BTNMIN_VIDEO, m_btnMin);
 	DDX_Control(pDX, IDC_BTNRSTO_VIDEO, m_btnRst);
 	DDX_Control(pDX, IDC_BTNCLOSE_VIDEO, m_btnClose);
+	DDX_Control(pDX, IDC_EDT_CDN_PULL, m_edtPullRtmp);
 }
 
 
@@ -189,6 +190,10 @@ void CVideoDlg::AdjustButtonsNormal(int cx, int cy)
 {
 	if (m_btnRtmp.GetSafeHwnd() != NULL)
 		m_btnRtmp.MoveWindow(cx - 126, cy - 48, 80, 24, TRUE);
+
+	if (m_edtPullRtmp.GetSafeHwnd() != 0){
+		m_edtPullRtmp.MoveWindow(30, cy - 48, 600, 24, TRUE);
+	}
 	return;
 	if (m_btnMode.GetSafeHwnd() != NULL)
 		m_btnMode.MoveWindow(cx / 2 - 216, cy - 60, 48, 48, TRUE);
@@ -915,6 +920,9 @@ LRESULT CVideoDlg::OnEIDStreamPublished(WPARAM wParam, LPARAM lParam)
 		KillTimer(nidEventPublishCallback);
 		m_btnRtmp.SetWindowText(LANG_STR("IDS_CHN_STOPPUBLISH"));
 	}
+	m_edtPullRtmp.ShowWindow(SW_SHOW);
+	m_edtPullRtmp.SetFocus();
+	m_edtPullRtmp.SetWindowText(m_pull_url);
 	return 0;
 }
 
@@ -930,6 +938,9 @@ LRESULT CVideoDlg::OnEIDStreamUnPublished(WPARAM wParam, LPARAM lParam)
 		KillTimer(nidEventUnPublishCallback);
 		m_btnRtmp.SetWindowText(LANG_STR("IDS_CHN_PUBLISH"));
 	}
+
+	m_edtPullRtmp.ShowWindow(SW_HIDE);
+	m_edtPullRtmp.SetWindowText(_T(""));
 	return 0;
 }
 
@@ -1075,7 +1086,10 @@ void CVideoDlg::InitCtrls()
 	m_btnMore.Create(NULL, WS_VISIBLE | WS_CHILD, CRect(0, 0, 1, 1), this, IDC_BTNMORE_VIDEO);
 
 	m_btnRtmp.Create(NULL, WS_VISIBLE | WS_CHILD, CRect(0, 0, 1, 1), this, IDC_BTN_CDN_PUBLISH);
-
+//	m_edtPullRtmp.Create(WS_VISIBLE | WS_CHILD, CRect(0, 0, 1, 1), this, IDC_EDT_CDN_PUBLISH);
+	m_edtPullRtmp.SetTip(_T("rtmp url"));
+	m_edtPullRtmp.SetFocus();
+	m_edtPullRtmp.ShowWindow(SW_HIDE);
 	m_cbxRole.Create(WS_VISIBLE | WS_CHILD | CBS_AUTOHSCROLL | CBS_DROPDOWNLIST, CRect(0, 0, 1, 1), this, IDC_CBXROLE_VIDEO);
 	m_cbxRole.SetFont(&m_ftDes);
 

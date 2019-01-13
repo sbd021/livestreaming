@@ -1,11 +1,13 @@
 #pragma once
 #include "AGButton.h"
+#include "AGEdit.h"
 #include "AGVideoWnd.h"
 #include "DeviceDlg.h"
 #include "ChatDlg.h"
 #include "SEIDlg.h"
 #include "AGScreenCaptureDlg.h"
 #include <list>
+#include "afxwin.h"
 // CVideoDlg Dialog
 
 class CVideoDlg : public CDialogEx
@@ -139,6 +141,8 @@ private:
 
 	CAGButton       m_btnMore;
 
+	//CAGEdit m_edtPullRtmp;
+
 	BOOL			m_bLastStat;
 	UINT			m_nScreenMode;
 	UINT			m_nBigShowedUID;
@@ -185,6 +189,7 @@ public:
 	bool bTranscoding;
 	LiveTranscoding liveTranscoding;
 	std::string m_rtmp_url;
+	CString m_pull_url;
 	CString waterMarkUrl;
 	CRect       rcWaterMark;
 	WATERMARK_TYPE water_type = WATERMARK_NONE;
@@ -199,4 +204,5 @@ public:
 	int nidEventPublishCallback = 10086;
 	int nidEventUnPublishCallback = 10087;
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	CAGEdit m_edtPullRtmp;
 };
