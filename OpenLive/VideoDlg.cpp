@@ -1087,7 +1087,7 @@ void CVideoDlg::InitCtrls()
 
 	m_btnRtmp.Create(NULL, WS_VISIBLE | WS_CHILD, CRect(0, 0, 1, 1), this, IDC_BTN_CDN_PUBLISH);
 //	m_edtPullRtmp.Create(WS_VISIBLE | WS_CHILD, CRect(0, 0, 1, 1), this, IDC_EDT_CDN_PUBLISH);
-	m_edtPullRtmp.SetTip(_T("rtmp url"));
+	//m_edtPullRtmp.SetTip(_T("rtmp url"));
 	m_edtPullRtmp.SetFocus();
 	m_edtPullRtmp.ShowWindow(SW_HIDE);
 	m_cbxRole.Create(WS_VISIBLE | WS_CHILD | CBS_AUTOHSCROLL | CBS_DROPDOWNLIST, CRect(0, 0, 1, 1), this, IDC_CBXROLE_VIDEO);

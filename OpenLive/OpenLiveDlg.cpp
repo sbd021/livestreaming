@@ -201,6 +201,7 @@ void COpenLiveDlg::InitChildDialog()
 
 	m_dlgEnterChannel.MoveWindow(x, y , width, height, TRUE);
 	m_dlgEnterChannel.SetCtrlPos();
+	m_dlgEnterChannel.Invalidate();
 	m_dlgSetup.MoveWindow(110, 70, 500, 450, TRUE);
 
 

@@ -204,5 +204,5 @@ public:
 	int nidEventPublishCallback = 10086;
 	int nidEventUnPublishCallback = 10087;
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
-	CAGEdit m_edtPullRtmp;
+	CEdit m_edtPullRtmp;
 };
