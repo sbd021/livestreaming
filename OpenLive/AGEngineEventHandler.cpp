@@ -371,6 +371,8 @@ void CAGEngineEventHandler::onStreamPublished(const char *url, int error)
 	param->url[len] = 0;
 	strcpy_s(param->url, len + 1, url);
 
+	param->error = error;
+
 	if (m_hMainWnd != NULL)
 		::PostMessage(m_hMainWnd, WM_MSGID(EID_RTM_STREAM_PUBLISHED), (WPARAM)param, 0);
 }

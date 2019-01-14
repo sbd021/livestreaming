@@ -907,22 +907,46 @@ LRESULT CVideoDlg::OnEIDFirstRemoteFrameDecoded(WPARAM wParam, LPARAM lParam)
 
 LRESULT CVideoDlg::OnEIDStreamPublished(WPARAM wParam, LPARAM lParam)
 {
-	PAGE_PUBSLISHED_PARAM lpData = (PAGE_PUBSLISHED_PARAM)wParam;
+	PAGE_PUBSLISHED_PARAM lpData = (PAGE_PUBSLISHED_PARAM)wParam;	
+
+	if (lpData->error == 0){
+		CString strStats;
+		m_btnRtmp.GetWindowText(strStats);
+		if (strStats.Compare(LANG_STR("IDS_CHN_PUBLISHING")) == 0){//回调没超过5s
+			KillTimer(nidEventPublishCallback);
+			m_btnRtmp.SetWindowText(LANG_STR("IDS_CHN_STOPPUBLISH"));
+		}
+		m_edtPullRtmp.ShowWindow(SW_SHOW);
+		m_edtPullRtmp.SetFocus();
+		m_edtPullRtmp.SetWindowText(m_pull_url);
+	}
+	else{
+		char szMsg[1024 + 512] = { 0 };
+		CString str;
+
+		sprintf_s(szMsg, sizeof(szMsg), "url %s, error: %d", lpData->url, lpData->error);
+		::MultiByteToWideChar(CP_UTF8, 0, szMsg, -1, str.GetBuffer(1024 + 512), 1024 + 512);
+
+		CString strErrMsg = _T("推流失败");
+
+		if (lpData->error == 2)
+			strErrMsg = _T("参数错误");
+		else if (lpData->error == 10)
+			strErrMsg = _T("推流超时未成功。");
+		else if (lpData->error == 19)
+			strErrMsg = _T("推流地址已推流。");
+		else if (lpData->error == 20)
+			strErrMsg = _T("与推流服务器断开连接。推流中断。");
+
+		str += strErrMsg;
+		AfxMessageBox(str);
+	}
+	
 
 	delete[] lpData->url;
 	lpData->url = NULL;
 	delete lpData;
 	lpData = NULL;
-
-	CString strStats;
-	m_btnRtmp.GetWindowText(strStats);
-	if (strStats.Compare(LANG_STR("IDS_CHN_PUBLISHING")) == 0){//回调没超过5s
-		KillTimer(nidEventPublishCallback);
-		m_btnRtmp.SetWindowText(LANG_STR("IDS_CHN_STOPPUBLISH"));
-	}
-	m_edtPullRtmp.ShowWindow(SW_SHOW);
-	m_edtPullRtmp.SetFocus();
-	m_edtPullRtmp.SetWindowText(m_pull_url);
 	return 0;
 }
 
