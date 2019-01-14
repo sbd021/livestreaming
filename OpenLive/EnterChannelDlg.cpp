@@ -338,14 +338,14 @@ void CEnterChannelDlg::OnBnClickedCheckSelfVideoprofile()
 		bSelfDefineVideoProfile = true;
 		Invalidate();
 		ShowSelfEdit(true);
-		m_btnSetup.EnableWindow(TRUE);
+		m_btnSetup.EnableWindow(FALSE);
 	}
 	else{
 		bSelfDefineVideoProfile = false;
 		Invalidate();
 		ShowSelfEdit(false);
 		//ClearSelftEdit();
-		m_btnSetup.EnableWindow(FALSE);
+		m_btnSetup.EnableWindow(TRUE);
 	}
 }
 
