@@ -373,7 +373,7 @@ void CEnterChannelDlg::InitSelfEdit()
 	m_edtVideoBitrate.SetWindowText(_T("15"));
 	m_edtVideoFPS.SetWindowText(_T("500"));
 }
-void CEnterChannelDlg::GetSelfDefine(int& width, int height, int fps, int bitrate)
+void CEnterChannelDlg::GetSelfDefine(int& width, int& height, int& fps, int& bitrate)
 {
 	CString strWidth, strHeight, strfps, strBitrate;
 	m_edtResolutionWidth.GetWindowText(strWidth);

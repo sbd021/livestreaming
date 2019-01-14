@@ -20,7 +20,7 @@ public:
 	CString GetCdnRtmp();
 	CString GetPullRtmp();
 
-	void GetSelfDefine(int& width, int height, int fps, int bitrate);
+	void GetSelfDefine(int& width, int& height, int& fps, int& bitrate);
 	void SetVideoString(LPCTSTR lpVideoString);
 // Dialog Data
 	enum { IDD = IDD_ENTERCHANNEL_DIALOG };
